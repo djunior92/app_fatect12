@@ -88,7 +88,8 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed('/menu');
+                                Navigator.of(context)
+                                    .pushNamed('/lstlembretes');
                               },
                               child: Container(
                                 width: 100,
@@ -108,7 +109,7 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed('/menu');
+                                Navigator.of(context).pushNamed('/lstcontas');
                               },
                               child: Container(
                                 width: 100,

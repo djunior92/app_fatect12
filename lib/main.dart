@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lancamentost12/pages/conta.page.dart';
+import 'package:lancamentost12/pages/conta.view.dart';
+import 'package:lancamentost12/pages/lembrete.page.dart';
+import 'package:lancamentost12/pages/lembrete.view.dart';
+import 'package:lancamentost12/pages/lista.contas.page.dart';
+import 'package:lancamentost12/pages/lista.lembretes.page.dart';
 import 'package:lancamentost12/pages/login.page.dart';
 import 'package:lancamentost12/pages/menu.page.dart';
 import 'package:lancamentost12/pages/usuario.page.dart';
@@ -18,8 +24,17 @@ class App extends StatelessWidget {
     var routes = {
       '/': (context) => LoginPage(),
       '/menu': (context) => MenuPage(),
-      '/usuario': (context) => UsuarioPage(
-            novoCadastro: null,
+      '/usuario': (context) => UsuarioPage(novoCadastro: null),
+      '/conta': (context) => ContaPage(novoCadastro: null),
+      '/lembrete': (context) =>
+          LembretePage(novoCadastro: null, lembreteid: null),
+      '/lstcontas': (context) => ListaContasPage(),
+      '/lstlembretes': (context) => ListaLembretesPage(),
+      '/lembreteview': (context) => LembreteViewPage(
+            lembrete: null,
+          ),
+      '/contaview': (context) => ContaViewPage(
+            conta: null,
           ),
     };
 

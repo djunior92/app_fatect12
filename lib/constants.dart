@@ -10,8 +10,14 @@ const String SERVER_PORT = ":8000";
 const String URL_LOGIN = "/usuarios/login";
 
 const String URL_USUARIO = "/usuarios";
-
 const String URL_USER_ADD = "/usuarios/adicionar";
+
+const String URL_LEMBRETE = "/lembretes";
+
+const String URL_CONTA = "/contas";
+
+const String URL_CONTA_PAGAR_ADD = "/contas/pagar/adicionar";
+const String URL_CONTA_RECEBER_ADD = "/contas/receber/adicionar";
 
 const double SIZE_TEXT_TITLE = 20;
 const double SIZE_TEXT_EDIT = 16;

@@ -28,7 +28,26 @@ final _emailController = TextEditingController();
 final _senhaController = TextEditingController();
 final _nomeController = TextEditingController();
 
+void _limparCampos() {
+  _emailController.text = "";
+  _senhaController.text = "";
+  _nomeController.text = "";
+}
+
+void _setModel() {
+  usuario.nome = _nomeController.text;
+  usuario.email = _emailController.text;
+  usuario.senha = _senhaController.text;
+}
+
+void _setControllers() {
+  _nomeController.text = usuario.nome;
+  _emailController.text = usuario.email;
+  _senhaController.text = usuario.senha;
+}
+
 Future<bool> _create() async {
+  _setModel();
   var result = await post(URL_USER_ADD, usuario.toJson());
 
   if (result == null) {
@@ -41,7 +60,7 @@ Future<bool> _create() async {
     return true;
   } else if (result.statusCode == 500) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(result.body),
+      content: Text(result.body.replaceAll('ValidationError', 'Motivo')),
       backgroundColor: Colors.red,
     ));
     return false;
@@ -51,6 +70,7 @@ Future<bool> _create() async {
 Future<bool> _editar() async {
   var preferences = await SharedPreferences.getInstance();
   final String userid = preferences.getString('userid');
+  _setModel();
 
   var result = await put(URL_USUARIO, userid, usuario.toJson());
 
@@ -64,7 +84,7 @@ Future<bool> _editar() async {
     return true;
   } else if (result.statusCode == 500) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(result.body),
+      content: Text(result.body.replaceAll('ValidationError', 'Motivo')),
       backgroundColor: Colors.red,
     ));
     return false;
@@ -82,12 +102,6 @@ class _UsuarioPageState extends State<UsuarioPage> {
       _loadData();
   }
 
-  void _limparCampos() {
-    _emailController.text = "";
-    _senhaController.text = "";
-    _nomeController.text = "";
-  }
-
   Future<void> _loadData() async {
     //recuperar o token
     var preferences = await SharedPreferences.getInstance();
@@ -97,12 +111,10 @@ class _UsuarioPageState extends State<UsuarioPage> {
     if (result.statusCode == 200) {
       Map<String, dynamic> dados =
           Map<String, dynamic>.from(jsonDecode(result.body));
-      Usuario _usuario = Usuario.fromJson(dados);
+      usuario = Usuario.fromJson(dados);
       setState(() {
-        idUsuario = _usuario.id;
-        usuario.email = _usuario.email;
-        usuario.senha = _usuario.senha;
-        usuario.nome = _usuario.nome;
+        idUsuario = usuario.id;
+        _setControllers();
       });
     } else if (result.statusCode == 401) {
       Navigator.of(context).pushReplacementNamed('/');
@@ -134,8 +146,9 @@ class _UsuarioPageState extends State<UsuarioPage> {
                       hintText: 'Nome do Usuário',
                       labelText: 'Nome',
                     ),
-                    initialValue: usuario.nome,
-                    onSaved: (value) => usuario.nome = value,
+                    //initialValue: idUsuario,
+                    controller: _nomeController,
+                    //onSaved: (value) => usuario.nome = value,
                     validator: (value) =>
                         value.isEmpty ? 'Campo Obrigatório' : null,
                   ),
@@ -150,8 +163,9 @@ class _UsuarioPageState extends State<UsuarioPage> {
                       hintText: 'E-mail  do Usuário',
                       labelText: 'E-mail',
                     ),
-                    initialValue: usuario.email,
-                    onSaved: (value) => usuario.email = value,
+                    //initialValue: usuario.email,
+                    //onSaved: (value) => usuario.email = value,
+                    controller: _emailController,
                     validator: (value) =>
                         value.isEmpty ? 'Campo Obrigatório' : null,
                   ),
@@ -167,10 +181,10 @@ class _UsuarioPageState extends State<UsuarioPage> {
                       hintText: 'Senha  do Usuário',
                       labelText: 'Senha',
                     ),
-                    initialValue: usuario.senha,
-                    onSaved: (value) => usuario.senha = value,
-                    validator: (value) =>
-                        value.isEmpty ? 'Campo Obrigatório' : null,
+                    //initialValue: usuario.senha,
+                    //onSaved: (value) => usuario.senha = value,
+                    controller: _senhaController,
+                    //validator: (value) => value.isEmpty ? 'Campo Obrigatório' : null,
                   ),
                 ),
                 SizedBox(
