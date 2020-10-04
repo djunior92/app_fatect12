@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:lancamentost12/models/Conta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:lancamentost12/pages/conta.view.dart';
 import '../constants.dart';
 import '../constants.dart';
 import '../functions/server.dart';
@@ -54,10 +52,14 @@ class _ListaContasPageState extends State<ListaContasPage> {
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: RaisedButton.icon(
                     elevation: 4.0,
-                    icon: Icon(Icons.add),
+                    icon: Icon(Icons.add, color: Colors.white),
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/conta');
+                      Navigator.of(context)
+                          .pushReplacementNamed('/tipoconta'); //deixando
+                      /*Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) =>
+                              ContaPage(novoCadastro: true, contaid: null)));*/
                     },
                     label: Text("Adicionar nova Conta",
                         style: TextStyle(color: Colors.white, fontSize: 16.0))),
@@ -129,9 +131,16 @@ class _ListaContasPageState extends State<ListaContasPage> {
                                                       alignment:
                                                           Alignment.center,
                                                       //color: snapshot.data[position].qtdeDisponivel == 0 ? Colors.red : Colors.green,
-                                                      color: Colors.green,
+                                                      color: snapshot
+                                                                  .data[
+                                                                      position]
+                                                                  .tipo ==
+                                                              "P"
+                                                          ? Colors.red
+                                                          : Colors.green,
                                                       child: Text(
-                                                        "aaa",
+                                                        snapshot.data[position]
+                                                            .tipo,
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.white),
@@ -175,22 +184,11 @@ class _ListaContasPageState extends State<ListaContasPage> {
                                                                 .vencimento
                                                                 .year
                                                                 .toString() +
-                                                            " - " +
+                                                            ' - R\u0024 ' +
                                                             snapshot
                                                                 .data[position]
-                                                                .vencimento
-                                                                .hour
-                                                                .toString()
-                                                                .padLeft(
-                                                                    2, '0') +
-                                                            ":" +
-                                                            snapshot
-                                                                .data[position]
-                                                                .vencimento
-                                                                .minute
-                                                                .toString()
-                                                                .padLeft(
-                                                                    2, '0'),
+                                                                .valor
+                                                                .toString(),
                                                         textAlign:
                                                             TextAlign.left,
                                                         maxLines: 2,
@@ -215,13 +213,11 @@ class _ListaContasPageState extends State<ListaContasPage> {
                                           ],
                                         ),
                                         onTap: () {
-                                          /*Navigator.of(context).pushReplacement(
-                                              MaterialPageRoute(
-                                            builder: (context) =>
-                                                AlteraAnuncioPage(
-                                                    anuncio: snapshot
-                                                        .data[position]),
-                                          ));*/
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) => ContaViewPage(
+                                                conta: snapshot.data[position]),
+                                          ));
                                         },
                                       );
                                     },

@@ -1,16 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:cpf_cnpj_validator/cpf_validator.dart';
-import 'package:cpf_cnpj_validator/cnpj_validator.dart';
 import 'package:lancamentost12/constants.dart';
 import 'package:lancamentost12/functions/server.dart';
 import 'package:lancamentost12/models/Lembrete.dart';
 import 'package:lancamentost12/pages/widgets/ShowWait.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 Lembrete lembrete = new Lembrete();
@@ -59,10 +54,7 @@ class _LembretePageState extends State<LembretePage> {
       lembrete.titulo = _tituloController.text;
       lembrete.descricao = _descricaoController.text;
       //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-      //LocalDate date = LocalDate.parse(string, formatter);
-      //lembrete.data = new DateFormat("yyyy-MM-ddThh:mm:ss.SSSZ").parse(
-      //        "${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}T${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}:00.000Z").toUtc();
-      //lembrete.data = new DateTime.utc(2020, 10, 10, 23, 58);
+      //lembrete.data = new DateFormat("yyyy-MM-ddThh:mm:ss.SSSZ").parse("${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}T${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}:00.000Z").toUtc();
       lembrete.data = new DateTime.utc(selectedDate.year, selectedDate.month,
           selectedDate.day, selectedTime.hour, selectedTime.minute);
     } catch (e) {
@@ -74,12 +66,14 @@ class _LembretePageState extends State<LembretePage> {
   void _setControllers() {
     _tituloController.text = lembrete.titulo;
     _descricaoController.text = lembrete.descricao;
+
     _currentDate = new DateTime.utc(lembrete.data.year, lembrete.data.month,
         lembrete.data.day, lembrete.data.hour, lembrete.data.minute);
     _currentTime =
         new TimeOfDay(hour: lembrete.data.hour, minute: lembrete.data.minute);
 
-    setState(() {});
+    selectedDate = _currentDate;
+    selectedTime = _currentTime;
   }
 
   Future<bool> _create() async {
@@ -179,7 +173,7 @@ class _LembretePageState extends State<LembretePage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Cadastrar Perfil'),
+        title: Text('Lembrete'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -212,6 +206,7 @@ class _LembretePageState extends State<LembretePage> {
                           ),
                         ),
                         Text(
+                          //"${selectedDate.toLocal()}".split(' ')[0],
                           "${selectedDate.day.toString().padLeft(2, '0')}/${selectedDate.month.toString().padLeft(2, '0')}/${selectedDate.year}",
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -335,10 +330,11 @@ class _LembretePageState extends State<LembretePage> {
                         Navigator.of(context, rootNavigator: true)
                             .pop(true); //fecha dialog wait
 
-                        if (result)
-                          Navigator.of(context)
-                              .pushReplacementNamed('/menu'); //deixando como
-
+                        if (result) {
+                          Navigator.pop(context); //fecha tela Retirada
+                          Navigator.pop(context, true); //fecha tela de Promocao
+                          //Navigator.of(context, rootNavigator: true).pop(true); //volta pro login
+                        }
                       }
                     },
                   ),

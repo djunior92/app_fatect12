@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lancamentost12/constants.dart';
 import 'package:lancamentost12/pages/usuario.page.dart';
-import 'package:lancamentost12/pages/widgets/ShowDialog.dart';
 import 'package:lancamentost12/pages/widgets/ShowWait.dart';
 import 'package:lancamentost12/pages/widgets/sing_config.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 import 'package:lancamentost12/constants.dart';
 import 'package:lancamentost12/functions/server.dart';
 import 'package:shared_preferences/shared_preferences.dart';

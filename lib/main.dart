@@ -7,16 +7,10 @@ import 'package:lancamentost12/pages/lista.contas.page.dart';
 import 'package:lancamentost12/pages/lista.lembretes.page.dart';
 import 'package:lancamentost12/pages/login.page.dart';
 import 'package:lancamentost12/pages/menu.page.dart';
+import 'package:lancamentost12/pages/tipo.conta.page.dart';
 import 'package:lancamentost12/pages/usuario.page.dart';
 
 void main() => runApp(App());
-/*void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(App());
-  });
-}*/
 
 class App extends StatelessWidget {
   @override
@@ -25,7 +19,8 @@ class App extends StatelessWidget {
       '/': (context) => LoginPage(),
       '/menu': (context) => MenuPage(),
       '/usuario': (context) => UsuarioPage(novoCadastro: null),
-      '/conta': (context) => ContaPage(novoCadastro: null),
+      '/conta': (context) =>
+          ContaPage(novoCadastro: null, tipo: null, contaid: null),
       '/lembrete': (context) =>
           LembretePage(novoCadastro: null, lembreteid: null),
       '/lstcontas': (context) => ListaContasPage(),
@@ -36,6 +31,7 @@ class App extends StatelessWidget {
       '/contaview': (context) => ContaViewPage(
             conta: null,
           ),
+      '/tipoconta': (context) => TipoContaPage(),
     };
 
     return MaterialApp(

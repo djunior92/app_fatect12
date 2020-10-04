@@ -7,7 +7,7 @@ class Conta {
   String tipo;
   String titulo;
   DateTime vencimento;
-  Float valor;
+  double valor;
   bool concluido;
 
   Conta({
@@ -23,7 +23,7 @@ class Conta {
     this.titulo = json['titulo'];
     this.vencimento =
         new DateFormat("yyyy-MM-ddThh:mm:ss.SSSZ").parse(json['vencimento']);
-    //this.valor = json['valor'];
+    this.valor = json['valor'].toDouble();
     this.concluido = json['concluido'];
   }
 
@@ -31,7 +31,7 @@ class Conta {
         "tipo": tipo ?? "null",
         "titulo": titulo ?? "null",
         "vencimento": vencimento.toString() ?? "null",
-        "valor": valor ?? "null",
+        "valor": valor.toString() ?? "null",
         "concluido": concluido ?? "null",
       };
 }

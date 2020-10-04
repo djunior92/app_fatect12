@@ -1,12 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:lancamentost12/models/Lembrete.dart';
 import 'package:lancamentost12/pages/lembrete.page.dart';
 import 'package:lancamentost12/pages/lembrete.view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../constants.dart';
 import '../constants.dart';
 import '../functions/server.dart';
 

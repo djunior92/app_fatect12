@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lancamentost12/pages/usuario.page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lancamentost12/pages/conta.page.dart';
 
-class MenuPage extends StatelessWidget {
+class TipoContaPage extends StatelessWidget {
   void _portraitModeOnly() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-  }
-
-  Future<void> _logout(BuildContext context) async {
-    var preferences = await SharedPreferences.getInstance();
-    preferences.setString('token', '');
-    preferences.setString('ip', '');
-    preferences.setString('userid', '');
-    Navigator.of(context).pushReplacementNamed('/');
   }
 
   @override
@@ -25,18 +16,10 @@ class MenuPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bem vindo!', style: TextStyle(color: Colors.white)),
+        title: Text('Escolha o tipo de conta',
+            style: TextStyle(color: Colors.white)),
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
-        actions: <Widget>[
-          IconButton(
-            color: Colors.white,
-            icon: Icon(Icons.exit_to_app),
-            onPressed: () {
-              _logout(context);
-            },
-          )
-        ],
       ),
       body: Column(children: <Widget>[
         Expanded(
@@ -57,10 +40,12 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => UsuarioPage(
-                                          novoCadastro: false,
-                                        )));
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => ContaPage(
+                                            novoCadastro: true,
+                                            tipo: "P",
+                                            contaid: null)));
                               },
                               child: Container(
                                 width: 110,
@@ -68,12 +53,11 @@ class MenuPage extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                   fit: BoxFit.fitWidth,
-                                  image:
-                                      AssetImage('assets/images/profile.png'),
+                                  image: AssetImage('assets/images/cpagar.png'),
                                 )),
                               ),
                             ),
-                            Text('Usuário')
+                            Text('Conta - Pagar')
                           ],
                         ),
                       ],
@@ -88,8 +72,12 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context)
-                                    .pushNamed('/lstlembretes');
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => ContaPage(
+                                            novoCadastro: true,
+                                            tipo: "R",
+                                            contaid: null)));
                               },
                               child: Container(
                                 width: 100,
@@ -98,30 +86,11 @@ class MenuPage extends StatelessWidget {
                                     image: DecorationImage(
                                   fit: BoxFit.fitWidth,
                                   image:
-                                      AssetImage('assets/images/lembrete.png'),
+                                      AssetImage('assets/images/creceber.png'),
                                 )),
                               ),
                             ),
-                            Text('Lembretes')
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pushNamed('/lstcontas');
-                              },
-                              child: Container(
-                                width: 100,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                  fit: BoxFit.fitWidth,
-                                  image: AssetImage('assets/images/pagar.png'),
-                                )),
-                              ),
-                            ),
-                            Text('Contas')
+                            Text('Conta - Receber')
                           ],
                         ),
                       ],
@@ -135,15 +104,6 @@ class MenuPage extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-            //RODAPÉ
-            height: 100,
-            alignment: Alignment.topRight,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('assets/images/fatec.png'),
-              //alignment: Alignment.bottomRight
-            )))
       ]),
     );
   }

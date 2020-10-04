@@ -10,7 +10,7 @@ class CardInformation extends StatelessWidget {
   }) : super(key: key);
 
   final String cabecalho;
-  final  String corpo;
+  final String corpo;
   final int maxLnCorpo;
 
   @override
@@ -29,8 +29,7 @@ class CardInformation extends StatelessWidget {
                 textAlign: TextAlign.left,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
                 corpo,

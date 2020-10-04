@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:lancamentost12/constants.dart';
 import 'package:lancamentost12/functions/server.dart';
-import 'package:lancamentost12/functions/useful.dart';
 import 'package:lancamentost12/models/Usuario.dart';
 import 'package:lancamentost12/pages/widgets/ShowWait.dart';
 import 'dart:convert';
