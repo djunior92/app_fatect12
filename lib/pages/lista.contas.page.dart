@@ -57,9 +57,6 @@ class _ListaContasPageState extends State<ListaContasPage> {
                     onPressed: () {
                       Navigator.of(context)
                           .pushReplacementNamed('/tipoconta'); //deixando
-                      /*Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              ContaPage(novoCadastro: true, contaid: null)));*/
                     },
                     label: Text("Adicionar nova Conta",
                         style: TextStyle(color: Colors.white, fontSize: 16.0))),

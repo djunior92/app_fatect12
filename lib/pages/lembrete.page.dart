@@ -236,9 +236,7 @@ class _LembretePageState extends State<LembretePage> {
                           ),
                         ),
                         Text(
-                          //"${selectedTime}",
                           "${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}",
-
                           textAlign: TextAlign.left,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -251,18 +249,6 @@ class _LembretePageState extends State<LembretePage> {
                 SizedBox(
                   height: 25,
                 ),
-
-                /*Column(
-                  children: <Widget>[
-                    RaisedButton(
-                        child: Text('Add Date'), onPressed: _pickDateDialog),
-                    SizedBox(height: 20),
-                    Text(_selectedDate ==
-                            null //ternary expression to check if date is null
-                        ? 'No date chosen!'
-                        : 'Picked Date: ${DateFormat.yMMMd().format(_selectedDate)}'),
-                  ],
-                ),*/
                 Padding(
                   padding: const EdgeInsets.only(bottom: 50),
                   child: TextFormField(
@@ -332,7 +318,7 @@ class _LembretePageState extends State<LembretePage> {
 
                         if (result) {
                           Navigator.pop(context); //fecha tela Retirada
-                          Navigator.pop(context, true); //fecha tela de Promocao
+                          //Navigator.pop(context, true); //fecha tela de Promocao
                           //Navigator.of(context, rootNavigator: true).pop(true); //volta pro login
                         }
                       }

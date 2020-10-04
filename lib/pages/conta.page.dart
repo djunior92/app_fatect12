@@ -280,7 +280,6 @@ class _ContaPageState extends State<ContaPage> {
 
                         if (result) {
                           Navigator.pop(context); //fecha tela Retirada
-                          Navigator.pop(context, true); //fecha tela de Promocao
                         }
                       }
                     },
