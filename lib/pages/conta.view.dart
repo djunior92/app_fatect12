@@ -128,9 +128,9 @@ class _ContaViewPageState extends State<ContaViewPage> {
 
                                 if (result) {
                                   //Navigator.of(context).pop();
-                                  Navigator.pop(context); //fecha tela Retirada
+                                  Navigator.pop(context); 
                                   Navigator.pop(
-                                      context, true); //fecha tela de Promocao
+                                      context, true); 
                                 }
                               },
                               label: Text("Excluir",
@@ -239,9 +239,9 @@ class _ContaViewPageState extends State<ContaViewPage> {
 
                             if (result) {
                               //Navigator.of(context).pop();
-                              Navigator.pop(context); //fecha tela Retirada
+                              Navigator.pop(context); 
                               Navigator.pop(
-                                  context, true); //fecha tela de Promocao
+                                  context, true); 
                             }
                           },
                           label: Text("Concluir Conta",

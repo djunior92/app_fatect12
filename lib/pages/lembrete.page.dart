@@ -317,8 +317,9 @@ class _LembretePageState extends State<LembretePage> {
                             .pop(true); //fecha dialog wait
 
                         if (result) {
-                          Navigator.pop(context); //fecha tela Retirada
-                          //Navigator.pop(context, true); //fecha tela de Promocao
+                          Navigator.pop(context);
+                          if (!widget.novoCadastro)
+                            Navigator.pop(context, true);
                           //Navigator.of(context, rootNavigator: true).pop(true); //volta pro login
                         }
                       }

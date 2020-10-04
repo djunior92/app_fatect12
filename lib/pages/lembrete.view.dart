@@ -128,9 +128,8 @@ class _LembreteViewPageState extends State<LembreteViewPage> {
 
                                 if (result) {
                                   //Navigator.of(context).pop();
-                                  Navigator.pop(context); //fecha tela Retirada
-                                  Navigator.pop(
-                                      context, true); //fecha tela de Promocao
+                                  Navigator.pop(context);
+                                  Navigator.pop(context, true);
                                 }
                               },
                               label: Text("Excluir",
@@ -213,9 +212,8 @@ class _LembreteViewPageState extends State<LembreteViewPage> {
 
                             if (result) {
                               //Navigator.of(context).pop();
-                              Navigator.pop(context); //fecha tela Retirada
-                              Navigator.pop(
-                                  context, true); //fecha tela de Promocao
+                              Navigator.pop(context);
+                              Navigator.pop(context, true);
                             }
                           },
                           label: Text("Concluir lembrete",

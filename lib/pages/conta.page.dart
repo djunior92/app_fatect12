@@ -279,7 +279,9 @@ class _ContaPageState extends State<ContaPage> {
                             .pop(true); //fecha dialog wait
 
                         if (result) {
-                          Navigator.pop(context); //fecha tela Retirada
+                          Navigator.pop(context);
+                          if (!widget.novoCadastro)
+                            Navigator.pop(context, true);
                         }
                       }
                     },
