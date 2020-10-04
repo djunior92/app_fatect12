@@ -128,9 +128,8 @@ class _ContaViewPageState extends State<ContaViewPage> {
 
                                 if (result) {
                                   //Navigator.of(context).pop();
-                                  Navigator.pop(context); 
-                                  Navigator.pop(
-                                      context, true); 
+                                  Navigator.pop(context);
+                                  Navigator.pop(context, true);
                                 }
                               },
                               label: Text("Excluir",
@@ -238,10 +237,8 @@ class _ContaViewPageState extends State<ContaViewPage> {
                                 .pop(true); //fecha dialog wait
 
                             if (result) {
-                              //Navigator.of(context).pop();
-                              Navigator.pop(context); 
-                              Navigator.pop(
-                                  context, true); 
+                              Navigator.pop(context);
+                              Navigator.pop(context, true);
                             }
                           },
                           label: Text("Concluir Conta",
